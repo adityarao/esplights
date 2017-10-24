@@ -36,7 +36,7 @@ const size_t MAX_CONTENT_SIZE = 512;
 
 // timezonedb host & URLs 
 const char *timezonedbhost = "api.timezonedb.com";
-const char *timezoneparams = "/v2/get-time-zone?key=NAQ9N7E21XFY&by=zone&zone=Asia/Kolkata&format=json";
+const char *timezoneparams = "/v2/get-time-zone?key=&by=zone&zone=Asia/Kolkata&format=json";
  
 const int CLK = D5; //Set the CLK pin connection to the display
 const int DIO = D4; //Set the DIO pin connection to the display

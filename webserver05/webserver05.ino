@@ -35,14 +35,14 @@
 #include <WiFiClientSecure.h>
 
 // Wifi parameters / auth
-#define ssid  "CreatorCon17"
-#define password "$ervicenow!23"
+#define ssid  ""
+#define password "$!23"
 
-// set some parameters to define time 
+// set some parameters to define time delays
 #define MAX_ATTEMPTS_FOR_TIME 5
 #define MAX_CONNECTION_ATTEMPTS 30
 #define MAX_ATTEMPTS 30
-#define CHECK_SWITCH_TIME 60000 
+#define CHECK_SWITCH_TIME 20000 
 #define CHECK_SCHEDULES 600000
 #define MAX_SCHEDULES 5
 
@@ -64,7 +64,7 @@ const size_t MAX_CONTENT_SIZE = 512;
 
 // timezonedb host & URLs 
 const char *timezonedbhost = "api.timezonedb.com";
-const char *timezoneparams = "/v2/get-time-zone?key=NAQ9N7E21XFY&by=zone&zone=Asia/Kolkata&format=json";
+const char *timezoneparams = "/v2/get-time-zone?key=&by=zone&zone=Asia/Kolkata&format=json";
 
 // define host and connection params to Google Spread Sheets
 const char *googlehost = "sheets.googleapis.com";
@@ -75,7 +75,7 @@ const char *googlehost = "sheets.googleapis.com";
 // | 745          | 753
 // | 1730         | 1750
 // replace the sheet id and your api key
-const char *sheetsURI = "/v4/spreadsheets/1284L8a4jW9cYtYqkAa4Ttl3CbLrUqQx0mYQjXZ6dnxQ/values/Sheet1!A2:B7?key=AIzaSyDA7nPA320L7-crzsV3OAhUzIkxqupSjhQ";
+const char *sheetsURI = "/v4/spreadsheets/1gZAFBTq6aTY-/values/Sheet1!A2:B7?key=-crzsV3OAhUzIkxqupSjhQ";
 
 // Index page - hard-coded, ideally should be encased in PROGMEM (https://www.arduino.cc/en/Reference/PROGMEM)
 const String INDEX_PAGE = "<!DOCTYPE html>\r\n<html>\r\n<head> \r\n<title>On/Off Switch </title>\r\n</head>\r\n<style> \r\n.button_on {\r\n  display: block;\r\n  height:100px;\r\n  width:80%;\r\n  padding: 15px 25px;\r\n  font-size: 24px;\r\n  font-size: 4.0vw;\r\n  margin-left:auto;\r\n  margin-right:auto;\r\n  margin-bottom:25px;\r\n  margin-top:auto;  \r\n  cursor: pointer;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  outline: none;\r\n  color: #fff;\r\n  background-color: GREEN;\r\n  border: none;\r\n  border-radius: 15px;\r\n  box-shadow: 0 9px #999;\r\n}\r\n\r\n.button_off {\r\n  display: block;\r\n  height:100px;\r\n  width:80%;  \r\n  padding: 15px 25px;\r\n  font-size: 24px;\r\n  font-size: 4.0vw;\r\n  margin-left:auto;\r\n  margin-right:auto;  \r\n  margin-bottom:auto;\r\n  margin-top:auto;  \r\n  cursor: pointer;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  outline: none;\r\n  color: #fff;\r\n  background-color: RED;\r\n  border: none;\r\n  border-radius: 15px;\r\n  box-shadow: 0 9px #999;\r\n}\r\n.button_on:hover {background-color: #3e8e41}\r\n.button_off:hover {background-color: #ff3341}\r\n\r\n.button_off:active {\r\n  background-color: #ff3341;\r\n  box-shadow: 0 5px #666;\r\n  transform: translateY(4px);\r\n\r\n}\r\n\r\n.button_on:active {\r\n  background-color: #3e8e41;\r\n  box-shadow: 0 5px #666;\r\n  transform: translateY(4px);\r\n\r\n}\r\n</style>\r\n<body>\r\n\r\n<form action=\"/\" method=\"post\">\r\n<table>\r\n  <button name=\"submit\" align=\"center\" class=\"button_on\" type=\"submit\" value=\"ON\"> ON </button>\r\n  <button name=\"submit\" align=\"center\" class=\"button_off\" type=\"submit\" value=\"OFF\"> OFF </button> \r\n </table>\r\n</form> \r\n\r\n</body>\r\n</html>";
@@ -153,8 +153,8 @@ bool connectToWiFi(); // connect to WiFi
 unsigned long sendNTPpacket(IPAddress&);
 time_t getTime();
 time_t getTimeFromTimeZoneDB(const char*, const char*);
-void refreshSchedules()
-void setSchedules(const char*, const char*) 
+void refreshSchedules();
+void setSchedules(const char*, const char*) ;
 boolean isTimeInSchedule(unsigned int);
 boolean syncTimeSheetFromGoogleSheets(const char*, const char*);
 void checkSwitchTime();
@@ -208,6 +208,9 @@ void setup()
 	// set up sync provider for getting time every 180 seconds
 	setSyncProvider(getTime);
 	setSyncInterval(180); 
+
+	// Set the schedules from Google Spreadsheets for the first time
+	setSchedules(googlehost, sheetsURI);
 
 	t_SENSE_TEMP = millis(); 
 	// initialize the counters to millis() - which will start the local clock
@@ -351,7 +354,7 @@ time_t getTime()
 		// print Unix time:
 		Serial.println(epoch);
 
-		epoch += 5*60*60 + 30*60; // IST ahead by 5 hrs 30 mins
+		epoch += IST; // IST ahead by 5 hrs 30 mins
 
 		return epoch;
 	}	

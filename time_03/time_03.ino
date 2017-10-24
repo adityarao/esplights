@@ -4,8 +4,8 @@
 #include <Time.h>
 #include <TimeLib.h>
 
-#define ssid  "harisarvottama"
-#define password "9885104058"
+#define ssid  ""
+#define password ""
 
 #define MAX_ATTEMPTS_FOR_TIME 5
 #define MAX_CONNECTION_ATTEMPTS 30
