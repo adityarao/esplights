@@ -75,10 +75,10 @@ const char *googlehost = "sheets.googleapis.com";
 // | 745          | 753
 // | 1730         | 1750
 // replace the sheet id and your api key
-const char *sheetsURI = "/v4/spreadsheets/1gZAFBTq6aTY-/values/Sheet1!A2:B7?key=-crzsV3OAhUzIkxqupSjhQ";
+const char *sheetsURI = "/v4/spreadsheets/1gZAFBTq6aTY-/values/Sheet1!A2:B7?key=AIzaSyDA7nPA320L7-";
 
 // Index page - hard-coded, ideally should be encased in PROGMEM (https://www.arduino.cc/en/Reference/PROGMEM)
-const String INDEX_PAGE = "<!DOCTYPE html>\r\n<html>\r\n<head> \r\n<title>On/Off Switch </title>\r\n</head>\r\n<style> \r\n.button_on {\r\n  display: block;\r\n  height:100px;\r\n  width:80%;\r\n  padding: 15px 25px;\r\n  font-size: 24px;\r\n  font-size: 4.0vw;\r\n  margin-left:auto;\r\n  margin-right:auto;\r\n  margin-bottom:25px;\r\n  margin-top:auto;  \r\n  cursor: pointer;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  outline: none;\r\n  color: #fff;\r\n  background-color: GREEN;\r\n  border: none;\r\n  border-radius: 15px;\r\n  box-shadow: 0 9px #999;\r\n}\r\n\r\n.button_off {\r\n  display: block;\r\n  height:100px;\r\n  width:80%;  \r\n  padding: 15px 25px;\r\n  font-size: 24px;\r\n  font-size: 4.0vw;\r\n  margin-left:auto;\r\n  margin-right:auto;  \r\n  margin-bottom:auto;\r\n  margin-top:auto;  \r\n  cursor: pointer;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  outline: none;\r\n  color: #fff;\r\n  background-color: RED;\r\n  border: none;\r\n  border-radius: 15px;\r\n  box-shadow: 0 9px #999;\r\n}\r\n.button_on:hover {background-color: #3e8e41}\r\n.button_off:hover {background-color: #ff3341}\r\n\r\n.button_off:active {\r\n  background-color: #ff3341;\r\n  box-shadow: 0 5px #666;\r\n  transform: translateY(4px);\r\n\r\n}\r\n\r\n.button_on:active {\r\n  background-color: #3e8e41;\r\n  box-shadow: 0 5px #666;\r\n  transform: translateY(4px);\r\n\r\n}\r\n</style>\r\n<body>\r\n\r\n<form action=\"/\" method=\"post\">\r\n<table>\r\n  <button name=\"submit\" align=\"center\" class=\"button_on\" type=\"submit\" value=\"ON\"> ON </button>\r\n  <button name=\"submit\" align=\"center\" class=\"button_off\" type=\"submit\" value=\"OFF\"> OFF </button> \r\n </table>\r\n</form> \r\n\r\n</body>\r\n</html>";
+const String INDEX_PAGE = "<!DOCTYPE html>\r\n<html>\r\n<head> \r\n<title>On/Off Switch </title>\r\n</head>\r\n<style> \r\n.label_chk {\r\n  padding: 15px 25px;\r\n  font-size: 24px;\r\n  font-size: 4.0vw;\r\n  margin-bottom:25px;\r\n  text-align: center;\r\n}\r\n.button_on {\r\n  display: block;\r\n  height:100px;\r\n  width:80%;\r\n  padding: 15px 25px;\r\n  font-size: 24px;\r\n  font-size: 4.0vw;\r\n  margin-left:auto;\r\n  margin-right:auto;\r\n  margin-bottom:25px;\r\n  margin-top:auto;  \r\n  cursor: pointer;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  outline: none;\r\n  color: #fff;\r\n  background-color: GREEN;\r\n  border: none;\r\n  border-radius: 15px;\r\n  box-shadow: 0 9px #999;\r\n}\r\n\r\n.button_off {\r\n  display: block;\r\n  height:100px;\r\n  width:80%;  \r\n  padding: 15px 25px;\r\n  font-size: 24px;\r\n  font-size: 4.0vw;\r\n  margin-left:auto;\r\n  margin-right:auto;  \r\n  margin-bottom:auto;\r\n  margin-top:auto;  \r\n  cursor: pointer;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  outline: none;\r\n  color: #fff;\r\n  background-color: RED;\r\n  border: none;\r\n  border-radius: 15px;\r\n  box-shadow: 0 9px #999;\r\n}\r\n.button_on:hover {background-color: #3e8e41}\r\n.button_off:hover {background-color: #ff3341}\r\n\r\n.button_off:active {\r\n  background-color: #ff3341;\r\n  box-shadow: 0 5px #666;\r\n  transform: translateY(4px);\r\n\r\n}\r\n\r\n.button_on:active {\r\n  background-color: #3e8e41;\r\n  box-shadow: 0 5px #666;\r\n  transform: translateY(4px);\r\n}\r\n\r\n.ckhbox {\r\n  height: 30px;\r\n  width: 30px;\r\n}\r\n\r\n\r\n</style>\r\n<script type=\"text/javascript\">\r\n  function updateTextInput(val) {\r\n          document.getElementById('textInput').value=val; \r\n        }       \r\n</script>\r\n<body>\r\n\r\n<form action=\"/\" method=\"post\">\r\n<table>\r\n  <button name=\"submit\" align=\"center\" class=\"button_on\" type=\"submit\" value=\"ON\"> ON </button>\r\n  <button name=\"submit\" align=\"center\" class=\"button_off\" type=\"submit\" value=\"OFF\"> OFF </button> \r\n </table>\r\n <br/>\r\n\t<div align=\"center\">  \r\n\t  <input class = \"ckhbox\" type=\"checkbox\" value=\"ON\"  name=\"check\" />\r\n\t  <label class=\"label_chk\"> Turn off automation !</label>\r\n\t</div>\r\n</form> \r\n</body>\r\n</html>";
 
 
 const int CLK = D5; //Set the CLK pin connection to the display
@@ -144,8 +144,14 @@ int g_definedSchedules = 0;
 // define some counters that will be used with millis() - cannot use delay()
 unsigned long ledCounter = 0, switchCounter =0, counter = 0, scheduleCount = 0;
 
+//display delay to show the temp for 2s
+int g_TimeDelay = 500; // 500 ms
+
 // Create a WebServer Object
 ESP8266WebServer server;
+
+//Automation On/Off flag
+boolean isAutomated = true;
 
 // define the methods ... 
 bool getTemperatureHumidity(float&, float&); // get temp
@@ -163,6 +169,7 @@ void handleRoot();
 time_t getTimeBackup() ;
 void displayTemperature();
 
+// the main set up function
 void setup()
 {
  	int attempt = 0;
@@ -217,28 +224,35 @@ void setup()
 	scheduleCount = switchCounter = ledCounter = millis();
 }
 
- 
- 
+
+// the main loop function 
 void loop()
 {
 	// display time every 500 ms
-	if(millis() - ledCounter > 500) {
+	if(millis() - ledCounter > g_TimeDelay) {
 		displayTime();
 		ledCounter = millis();
+		g_TimeDelay = 500;
 	}
 
     // Handle the web client
     // #TODO 3: handle default requests
     server.handleClient(); 
 
-    // check if its time to switch
-    checkSwitchTime();    
+    // Check if automation has been turned off 
+    if(isAutomated) {
+	    // check if its time to switch
+    	checkSwitchTime();    
+		// check if its time to refresh schedules from google docs
+		refreshSchedules();    	
+    }
 
-    // check if its time to refresh schedules from google docs
-    refreshSchedules();    	
-
+    
 	// check to see if its a good time to display the temperature too 
     displayTemperature();
+
+    if(second()%3)
+    	digitalWrite(BLUE, !digitalRead(BLUE));
 }
 
 // display the current synched time to the 7 segment display
@@ -252,6 +266,9 @@ void displayTime()
 void displayTemperature()
 {
 	if(millis() - t_SENSE_TEMP > 10000) {
+		// turn on the RED LED
+		digitalWrite(RED, HIGH);
+
 		float temperature, humidity;
 
 		t_SENSE_TEMP = millis();
@@ -270,6 +287,10 @@ void displayTemperature()
 		} else {
 			display.setSegments(SEG_ERR);
 		}
+
+		// display the temp for at least 2 seconds
+		g_TimeDelay = 2000; // 2secs
+		digitalWrite(RED, LOW);
 	}	
 }
 
@@ -302,8 +323,12 @@ bool connectToWiFi() {
 	Serial.println("IP address: ");
 	
 	localIP = WiFi.localIP().toString();
-
 	Serial.println(localIP);
+
+	// start the server at the root 
+	server.on("/", handleRoot);
+	server.begin();
+
 
 	return true;
 }
@@ -312,7 +337,7 @@ bool connectToWiFi() {
 time_t getTime() 
 {
 	display.setSegments(SEG_SYNC);
-
+	digitalWrite(BLUE, HIGH);
 	WiFi.hostByName(ntpServerName, timeServerIP); 
 	sendNTPpacket(timeServerIP); // send an NTP packet to a time server
 
@@ -320,7 +345,7 @@ time_t getTime()
 	delay(3000);
 
 	int cb = udp.parsePacket();
-
+	digitalWrite(BLUE, LOW);
 	// introduce a back up for time as its critical for the overall operation
 	if (!cb) {
 		Serial.println("no packet yet, trying timezonedb as back up!");
@@ -419,7 +444,7 @@ void handleRoot()
     handleSubmit();
   }
   else {
-    Serial.print("Going to index page, current value : ");
+    Serial.print("Going to index page, current value of relay : ");
     Serial.println(digitalRead(RELAY));
     server.send(200, "text/html", INDEX_PAGE);
   }
@@ -429,16 +454,29 @@ void handleRoot()
 void handleSubmit()
 {
   String submit = server.arg("submit");
+  String automationShutdown = server.arg("check");
 
   if(submit == "ON") {
     Serial.print("Got message : ");
     Serial.println(submit);
     digitalWrite(D1, HIGH); 
+    digitalWrite(BLUE, HIGH);
   } else if (submit == "OFF") {
     Serial.print("Got message : ");
     Serial.println(submit);
     digitalWrite(D1, LOW); 
+	digitalWrite(BLUE, LOW);    
   }
+
+  // turn off automation if 
+  if(automationShutdown == "ON") {
+  	Serial.println("Turning OFF automation");
+  	isAutomated = false;
+  } else {
+  	Serial.println("Turning ON automation");  	
+  	isAutomated = true;
+  }
+
   server.send(200, "text/html", INDEX_PAGE);
 }
 
