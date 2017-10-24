@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>On/Off Switch </title>
+</head>
+<style> 
+.label_chk {
+  padding: 15px 25px;
+  font-size: 24px;
+  font-size: 4.0vw;
+  margin-bottom:25px;
+  text-align: center;
+}
+.button_on {
+  display: block;
+  height:100px;
+  width:80%;
+  padding: 15px 25px;
+  font-size: 24px;
+  font-size: 4.0vw;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:25px;
+  margin-top:auto;  
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: GREEN;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button_off {
+  display: block;
+  height:100px;
+  width:80%;  
+  padding: 15px 25px;
+  font-size: 24px;
+  font-size: 4.0vw;
+  margin-left:auto;
+  margin-right:auto;  
+  margin-bottom:auto;
+  margin-top:auto;  
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: RED;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+.button_on:hover {background-color: #3e8e41}
+.button_off:hover {background-color: #ff3341}
+
+.button_off:active {
+  background-color: #ff3341;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+
+}
+
+.button_on:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+</style>
+<script type="text/javascript">
+  function updateTextInput(val) {
+          document.getElementById('textInput').value=val; 
+        }       
+</script>
+<body>
+
+<form action="/" method="post">
+<table>
+  <button name="submit" align="center" class="button_on" type="submit" value="ON"> ON </button>
+  <button name="submit" align="center" class="button_off" type="submit" value="OFF"> OFF </button> 
+ </table>
+</form> 
+</body>
+</html>
