@@ -16,8 +16,8 @@
 #include <ArduinoJson.h>
 
 // Wifi parameters / auth
-#define ssid  "CreatorCon17"
-#define password "$ervicenow!23"
+#define ssid  ""
+#define password "$!23"
 
 // 
 #define MAX_ATTEMPTS_FOR_TIME 5
